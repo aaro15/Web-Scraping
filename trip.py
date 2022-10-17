@@ -25,9 +25,7 @@ driver.get(url)
 html = driver.page_source
 soup = BeautifulSoup(html, "lxml")  
 
-# hotels = []
-# for name in soup.findAll('div',{'class':'roi'}):
-#     hotels.append(name.text.strip())
+
 
 
 overall=soup.findAll('div',{'class':'box-footer'})
@@ -41,8 +39,8 @@ for each in overall:
 
     temp.append(r)
 print(temp)
-# import pandas as pd
-# print(pd.DataFrame(temp)) 
+import pandas as pd
+print(pd.DataFrame(temp)) 
 
 
      
