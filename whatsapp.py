@@ -1,3 +1,4 @@
+from telnetlib import EC
 import time
 import requests
 import os.path
@@ -19,45 +20,11 @@ webdriver_service = Service(f"{homedir}/chromedriver/stable/chromedriver")
 #webdriver_service = Service('/mnt/c/Users/babuk/chromedriver.exe')
 driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
 driver.maximize_window()
-url = ('https://dev.rentalforincome.com/property/list')
-
+url = ('https://www.youtube.com/')
 driver.get(url)
+time.sleep(15)
+ 
 html = driver.page_source
-soup = BeautifulSoup(html, "lxml")  
-
-# hotels = []
-# for name in soup.findAll('div',{'class':'roi'}):
-#     hotels.append(name.text.strip())
-
-
-overall=soup.findAll('div',{'class':'box-footer'})
-temp = []
-for each in overall:
-    r = {}
-    r['test'] = each.find('h3',{'class':'proptitle'}).text
-    case1 = each.findAll('strong')
-    r['sector'] = case1[0].text
-    r['sector1'] = case1[1].text
-
-    temp.append(r)
-print(temp)
-# import pandas as pd
-# print(pd.DataFrame(temp)) 
-
-
-     
-
-
-    
-    
-
-
-    
-
-
-
-
-# import json
-# print(json.dumps(hotels, indent =2))
-
-driver.quit()
+soup = BeautifulSoup(html, "lxml")
+soup = soup.find('span',{'class':"inline-metadata-item style-scope ytd-video-meta-block"}).text
+print(soup)
